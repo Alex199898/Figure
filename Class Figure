@@ -1,22 +1,94 @@
 using System;
-using System.Collection.Generetic
-using System.Text
-namespace ClassLibraryFigure
+using System.Collections.Generic;
+using System.Text;
+
+ namespace ClassLibraryFigure1
 {
-public class Figure_v1
-{
-private string Answer;
-private double Radius,side1,side2,side3,PI
-public void Show()
-{
-Console.WriteLine(@"Выбирете что хотите найти?"+
-"1- Площадь крга"+
-"2- Найти треугольник и его площадь");
-Answer=Console.ReadLine();
-if(Answer=="1")
-{
-The
-}
-}
-}
-}
+   public class Figure_v1
+    {
+      private string Answer;
+      private double Radius, side1, side2, side3, PI;
+      public void Show()
+       {
+
+            Console.WriteLine(@"Выберите что хотите найти?" +
+               " 1 - Площадь круга" +
+               " 2 - Найти треугольник и его площадь");
+            Answer = Console.ReadLine();
+            if (Answer == "1")
+           {
+               The_radius_of_the_circle();
+
+            }
+           else if (Answer == "2")
+           {
+               Triangle();
+            }
+            else
+           {
+               Console.WriteLine("Данного значения нет, повторите еще раз");
+                Show();
+           }
+       }
+        private void The_radius_of_the_circle()
+       {
+                Console.WriteLine("Введите пареметры круга и нажмите Enter");
+                Console.Write("Ввудите радиус: ");
+                Answer = Convert.ToString(Console.ReadLine());
+            bool isDouble = Double.TryParse(Answer, out Radius);
+            if (isDouble)
+            {
+                Console.WriteLine("Радиус " + Radius);
+                PI = Math.PI * Radius * Radius;
+                Console.WriteLine("Площадь круга ровна: " + PI);
+            }
+            else
+            {
+                Console.WriteLine("Введенное значение не соответствует типу данных!");
+                The_radius_of_the_circle();
+            }
+            Show();
+        }
+        private void Triangle()
+        {
+            Console.WriteLine("Введите стороны треугольника и радиус его окружности.");
+            Console.Write("Введите А сторону: ");
+            Answer = Convert.ToString(Console.ReadLine());
+            bool isDouble = Double.TryParse(Answer, out side1);
+            if (isDouble)
+            {
+                Console.Write("Введите Б сторону: ");
+                Answer = Convert.ToString(Console.ReadLine());
+                bool isDouble2 = Double.TryParse(Answer, out side2);
+                if (isDouble2)
+                {
+                    Console.Write("Введите В сторону: ");
+                    Answer = Convert.ToString(Console.ReadLine());
+                    bool isDouble3 = Double.TryParse(Answer, out side3);
+                    if (isDouble3)
+                    {
+                        Console.Write("Введите Радиус: ");
+                        Answer = Convert.ToString(Console.ReadLine());
+                        bool isDouble4 = Double.TryParse(Answer, out Radius);
+                        if (isDouble4)
+                        {
+                            Console.WriteLine($"Площадь треугольника: {(side1 * side2 * side3) / (4 * Radius)}");
+                            if (side1 + side2 <= side3  side1 + side3 <= side2  side2 + side3 <= side1)
+                            {
+                                Console.WriteLine("Тип: не треугольник");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Тип: треугольник");
+
+                            if (side1 == side2 && side2 == side3)
+                            {
+                                Console.WriteLine("Равносторонний треугольник");
+                            }
+                            else if (side1 == side2  side2 == side3  side1 == side3)
+                            {
+                                Console.WriteLine("Равнобедренный треугольник");
+                            }
+                        }
+                        Show();
+                    }
