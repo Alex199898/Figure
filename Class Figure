@@ -1,0 +1,22 @@
+using System;
+using System.Collection.Generetic
+using System.Text
+namespace ClassLibraryFigure
+{
+public class Figure_v1
+{
+private string Answer;
+private double Radius,side1,side2,side3,PI
+public void Show()
+{
+Console.WriteLine(@"Выбирете что хотите найти?"+
+"1- Площадь крга"+
+"2- Найти треугольник и его площадь");
+Answer=Console.ReadLine();
+if(Answer=="1")
+{
+The
+}
+}
+}
+}
