@@ -1,152 +1,87 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 using System.Text;
 
  namespace ClassLibraryFigure1
 {
-   public class Figurev1
-    {
-      private string Answer;
-      private double Radius, side1, side2, side3, PI;
-      public void Show()
-       {
-
-            Console.WriteLine(@"Выберите что хотите найти?" +
-               " 1 - Площадь круга" +
-               " 2 - Найти треугольник и его площадь");
-            Answer = Console.ReadLine();
-            if (Answer == "1")
-           {
-               The_radius_of_the_circle();
-
-            }
-           else if (Answer == "2")
-           {
-               Triangle();
-            }
-            else
-           {
-               Console.WriteLine("Данного значения нет, повторите еще раз");
-                Show();
-           }
-       }
-        private void The_radius_of_the_circle()
-       {
-                Console.WriteLine("Введите пареметры круга и нажмите Enter");
-                Console.Write("Ввудите радиус: ");
-                Answer = Convert.ToString(Console.ReadLine());
-            bool isDouble = Double.TryParse(Answer, out Radius);
-            if (isDouble)
+    public class LibraryFigure
+    { 
+        private static double semiperimeter, radius, side1, side2, side3,square;
+        public double GetRadiusOfTheCircle(string answer)
+        {
+            bool isDouble1 = Double.TryParse(answer, out radius);
+            if (isDouble1)
             {
-                Console.WriteLine("Радиус " + Radius);
-                PI = Math.PI * Radius * Radius;
-                Console.WriteLine("Площадь круга ровна: " + PI);
+                Console.WriteLine("Радиус " + radius);
+                square = Math.PI * radius * radius;
+
+                Console.WriteLine("Площадь круга ровна: " + square);
             }
             else
             {
                 Console.WriteLine("Введенное значение не соответствует типу данных!");
-                The_radius_of_the_circle();
             }
-            Show();
+            return square;
+
         }
-        private void Triangle()
+        public void GetSidesOfTheTriangle(string answer, string answer2, string answer3)
         {
-            Console.WriteLine("Введите стороны треугольника и радиус его окружности.");
-            Console.Write("Введите А сторону: ");
-            Answer = Convert.ToString(Console.ReadLine());
-            bool isDouble = Double.TryParse(Answer, out side1);
-            if (isDouble)
+
+            bool isDouble1 = Double.TryParse(answer, out side1);
+            if (isDouble1)
             {
-                Console.Write("Введите Б сторону: ");
-                Answer = Convert.ToString(Console.ReadLine());
-                bool isDouble2 = Double.TryParse(Answer, out side2);
+                bool isDouble2 = Double.TryParse(answer2, out side2);
                 if (isDouble2)
                 {
-                    Console.Write("Введите В сторону: ");
-                    Answer = Convert.ToString(Console.ReadLine());
-                    bool isDouble3 = Double.TryParse(Answer, out side3);
+                    bool isDouble3 = Double.TryParse(answer3, out side3);
                     if (isDouble3)
                     {
-                        Console.Write("Введите Радиус: ");
-                        Answer = Convert.ToString(Console.ReadLine());
-                        bool isDouble4 = Double.TryParse(Answer, out Radius);
-                        if (isDouble4)
+                        if (side1 + side2 <= side3 || side1 + side3 <= side2 || side2 + side3 <= side1)
                         {
-                            Console.WriteLine($"Площадь треугольника: {(side1 * side2 * side3) / (4 * Radius)}");
-                            if (side1 + side2 <= side3  side1 + side3 <= side2  side2 + side3 <= side1)
-                            {
-                                Console.WriteLine("Тип: не треугольник");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Тип: треугольник");
+                            Console.WriteLine("Треугольника с такими сторонами не существует");
+                        }
+                        else
+                        {
+                            semiperimeter = (side1 + side2 + side3) / 2;
+                            square = Math.Sqrt(semiperimeter * (semiperimeter - side1) * (semiperimeter - side2) * (semiperimeter - side3));
+
+                            Console.WriteLine($"Площадь треугольника: {(square)}");
+
 
                             if (side1 == side2 && side2 == side3)
                             {
                                 Console.WriteLine("Равносторонний треугольник");
+
                             }
-                            else if (side1 == side2  side2 == side3  side1 == side3)
+                            else if (side1 == side2 || side2 == side3 || side1 == side3)
                             {
                                 Console.WriteLine("Равнобедренный треугольник");
                             }
                         }
-                        Show();
-                    }
+                        
 
-else
-                        {
-                            Console.WriteLine("Введенное значение не соответствует типу данных!");
-                            Triangle();
-                        }
                     }
                     else
                     {
                         Console.WriteLine("Введенное значение не соответствует типу данных!");
-                        Triangle();
                     }
-                }
-                else
+                } else
                 {
                     Console.WriteLine("Введенное значение не соответствует типу данных!");
-                    Triangle();
                 }
-            }
-            else
+
+            }else
             {
                 Console.WriteLine("Введенное значение не соответствует типу данных!");
-                Triangle();
             }
-
         }
     }
 }
 
-1.библиотека должна принимать какие-то значения и возвращать результат
+//Запрос SQL по второму заданию
+use Products
 
-чтобы внешняя программа могла использовать функции, которые в ней содержатся
-
-она не должна содержать введите параметры круга и нажмите, введите радиус и тд
-
-2.да, отдельный класс, который представляет собой библиотеку, ты его подключаешь в проект и вызываешь его методы
-
-и если введённые значения какие-то не корректные, то твоя библиотека может выкинуть Exception
-
-ну собственно это основное, а такой код его невозможно вообще тестировать никакими тестами
-
-потому что ввод с клавиатуры
-
-и вычисления не отделены от ввода данных
-
-Ну и названия функций должны быть осмысленными The_radius_of_the_circle
-
-типа GetRadiusOfTheCircle
-
-получить радиус
-
-и в данном случае это всё может быть объявлено как static
-
-ну собственно всё, это основное
-
-библиотека вычисляет, к библиотеке можно применять юнит тесты
-
-а ввод данных и вывод результата делает другая программа
+select p.Name,p.Color,p.Country,c.NameCategory,p.Categoryid
+from Product as p
+left join Category as c on c.id=p.Categoryid
