@@ -92,3 +92,31 @@ using System.Text;
                         }
                         Show();
                     }
+
+else
+                        {
+                            Console.WriteLine("Введенное значение не соответствует типу данных!");
+                            Triangle();
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Введенное значение не соответствует типу данных!");
+                        Triangle();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Введенное значение не соответствует типу данных!");
+                    Triangle();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Введенное значение не соответствует типу данных!");
+                Triangle();
+            }
+
+        }
+    }
+}
