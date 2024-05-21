@@ -8,7 +8,7 @@ using System.Text;
     public class LibraryFigure
     { 
         private static double semiperimeter, radius, side1, side2, side3,square;
-        public double GetRadiusOfTheCircle(string answer)
+        public void GetRadiusOfTheCircle(string answer)
         {
             bool isDouble1 = Double.TryParse(answer, out radius);
             if (isDouble1)
@@ -22,7 +22,7 @@ using System.Text;
             {
                 Console.WriteLine("Введенное значение не соответствует типу данных!");
             }
-            return square;
+            
 
         }
         public void GetSidesOfTheTriangle(string answer, string answer2, string answer3)
