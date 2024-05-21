@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Policy;
 using System.Text;
 
- namespace ClassLibraryFigure1
+ namespace ClassLibraryFigure
 {
     public class LibraryFigure
     { 
